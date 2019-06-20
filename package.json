@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Boilerplate for writing p5.js sketches in es6 with babel, webpack and sass.",
   "scripts": {
+    "start": "npm run dev",
     "clean": "rimraf dist",
     "dev": "webpack-dev-server --progress --colors --inline --hot --open",
-    "prebuild": "npm install",
     "build": "npm run clean && webpack --progress --colors -p"
   },
   "repository": {
@@ -19,20 +19,26 @@
   },
   "homepage": "https://github.com/mkontogiannis/p5.js-es6#README",
   "dependencies": {
-    "p5": "0.7.2"
+    "lodash": "^4.17.11",
+    "p5": "^0.8.0"
   },
   "devDependencies": {
-    "@babel/core": "7.1.2",
-    "@babel/preset-env": "7.1.0",
-    "babel-loader": "8.0.4",
-    "copy-webpack-plugin": "4.5.4",
-    "css-loader": "1.0.0",
-    "node-sass": "4.9.4",
-    "rimraf": "2.6.2",
-    "sass-loader": "7.1.0",
-    "style-loader": "0.23.1",
-    "webpack": "4.21.0",
-    "webpack-cli": "3.1.2",
-    "webpack-dev-server": "3.1.9"
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^8.0.6",
+    "copy-webpack-plugin": "^5.0.3",
+    "css-loader": "^2.1.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.3",
+    "module-to-cdn": "^3.1.5",
+    "node-sass": "^4.12.0",
+    "prettier-eslint": "^8.8.2",
+    "rimraf": "^2.6.3",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.7.0"
   }
 }
