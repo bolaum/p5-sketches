@@ -1,5 +1,6 @@
-import P5lib from 'p5';
 import _ from 'lodash';
+
+/** @typedef {import('p5')} P5lib */
 
 class Polygon {
   constructor(p5, x, y, radius, nPoints, dotRPM, dotSize = 9, color = 'black') {
