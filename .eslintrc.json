@@ -13,6 +13,7 @@
     "sourceType": "module"
   },
   "rules": {
+    "max-len": ["error", { "code": 120 }],
     "class-methods-use-this": 0,
     "no-underscore-dangle": 0,
     "no-param-reassign": 0,

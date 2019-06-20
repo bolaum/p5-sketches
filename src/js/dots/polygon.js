@@ -5,9 +5,9 @@ class Polygon {
   constructor(p5, x, y, radius, nPoints, dotRPM, dotSize = 9, color = 'black') {
     this._p5 = p5;
     this._nPoints = nPoints;
-    this._dotSize = dotSize || 9;
     this._color = color;
 
+    this.setDotSize(dotSize);
     this.setDotRPM(dotRPM);
     this.setPosition(x, y);
     this.setRadius(radius);
@@ -48,6 +48,10 @@ class Polygon {
     this._dotRPM = rpm;
   }
 
+  setDotSize(size) {
+    this._dotSize = size;
+  }
+
   show() {
     /** @type {P5lib} */
     const p5 = this._p5;
@@ -71,6 +75,7 @@ class Polygon {
     const p5 = this._p5;
 
     p5.push();
+
     p5.translate(this._x, this._y);
     p5.rotate(90 - (180.0 / this._nPoints));
 

@@ -38,6 +38,7 @@ module.exports = {
     ]),
   ],
   externals: {
+    _: 'lodash',
     p5: 'p5',
     'p5/lib/addons/p5.dom': 'p5.dom',
     'p5/lib/addons/p5.sound': 'p5.sound',
