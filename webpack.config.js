@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const sketches = [
   'dots',
   'mic',
+  'lotus',
 ];
 
 const plugins = [

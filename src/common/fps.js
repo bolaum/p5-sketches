@@ -22,6 +22,7 @@ class FPS {
 
     p5.push();
     p5.textSize(this._textSize);
+    p5.fill(0);
     p5.text(`${p5.round(this._curFps)}`, this._x, this._y);
     p5.pop();
   }
