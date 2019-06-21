@@ -21,8 +21,6 @@ const POLYGON_COLORS = [
   '#cc4760',
 ];
 
-const parentDiv = document.getElementById('sketch');
-
 /** @param p5 {P5lib} */
 const s = (p5) => {
   let nPolygons = 13;
@@ -53,7 +51,7 @@ const s = (p5) => {
   function onWindowResize() {
     canvasSize = getCanvasSize();
 
-    console.log('WINDOW RESIZE', canvasSize);
+    // console.log('WINDOW RESIZE', canvasSize);
 
     p5.resizeCanvas(canvasSize, canvasSize);
   }
@@ -62,7 +60,7 @@ const s = (p5) => {
     minRadius = canvasSize / n + (n === 13 ? p5.windowWidth / 20 : 0);
     maxRadius = canvasSize / 2;
 
-    console.log(minRadius, n);
+    // console.log(minRadius, n);
 
     polygons = _.times(
       n,
@@ -102,7 +100,8 @@ const s = (p5) => {
     fps = new FPS(p5, p5.width - 30, 30);
 
     nPolygonsInput = p5.createInput(nPolygons);
-    nPolygonsInput.position(cnv.position().x + 5, cnv.position().y);
+    nPolygonsInput.position(cnv.position().x + 5, cnv.position().y + 35);
+    nPolygonsInput.size(60, 20);
     nPolygonsInput.input(_.debounce(() => {
       const val = parseInt(nPolygonsInput.value(), 10);
       const n = _.isNumber(val) && val > 2 ? val : 2;
@@ -144,6 +143,7 @@ const s = (p5) => {
 
     p5.push();
     p5.textSize(15);
+    p5.text('Polygons', 5, 30);
     p5.text(`RPM: ${rpmSlider.value()}`, 5, p5.height - rpmSlider.height - 10);
     p5.text(`Dot size: ${dotSlider.value()}`, p5.width - rpmSlider.width - 5, p5.height - rpmSlider.height - 10);
     p5.pop();
