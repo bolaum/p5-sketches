@@ -6,7 +6,8 @@
     "start": "npm run dev",
     "clean": "rimraf dist",
     "dev": "webpack-dev-server --progress --colors --inline --hot --open",
-    "build": "npm run clean && webpack --progress --colors -p"
+    "build": "npm run clean && webpack --progress --colors -p",
+    "buildProd": "npm run build -- --mode production --devtool false"
   },
   "repository": {
     "type": "git",
@@ -18,28 +19,53 @@
     "url": "https://github.com/mkontogiannis/p5.js-es6/issues"
   },
   "homepage": "https://github.com/mkontogiannis/p5.js-es6#README",
+  "browserslist": [
+    "defaults",
+    "last 2 versions"
+  ],
   "dependencies": {
+    "@babel/runtime": "^7.4.5",
+    "foundation-sites": "^6.5.3",
+    "jquery": "^3.4.1",
     "lodash": "^4.17.11",
-    "p5": "^0.8.0"
+    "p5": "^0.8.0",
+    "showdown": "^1.9.0",
+    "what-input": "^5.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
+    "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
+    "autoprefixer": "^9.6.0",
+    "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
+    "babel-plugin-dynamic-import-webpack": "^1.1.0",
     "copy-webpack-plugin": "^5.0.3",
-    "css-loader": "^2.1.1",
-    "eslint": "^5.16.0",
+    "css-loader": "^3.0.0",
+    "ejs-loader": "^0.3.3",
+    "eslint": "^6.0.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.3",
     "html-webpack-plugin": "^3.2.0",
     "module-to-cdn": "^3.1.5",
     "node-sass": "^4.12.0",
-    "prettier-eslint": "^8.8.2",
+    "postcss-loader": "^3.0.0",
+    "prettier-eslint": "^9.0.0",
+    "raw-loader": "^3.0.0",
     "rimraf": "^2.6.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "webpack": "^4.33.0",
-    "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.7.0"
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.2"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "dynamic-import-webpack",
+      "@babel/transform-runtime"
+    ]
   }
 }

@@ -2,6 +2,7 @@ import P5lib from 'p5';
 import 'p5/lib/addons/p5.dom';
 import _ from 'lodash';
 
+import '../common/base.scss';
 import Polygon from './polygon';
 import FPS from '../common/fps';
 
@@ -20,6 +21,8 @@ const POLYGON_COLORS = [
   '#cc47a2',
   '#cc4760',
 ];
+
+const parent = document.getElementById('sketch');
 
 /** @param p5 {P5lib} */
 const s = (p5) => {
@@ -45,7 +48,7 @@ const s = (p5) => {
   let elapsed = 0.0;
 
   function getCanvasSize() {
-    return p5.min(p5.windowWidth, p5.windowHeight);
+    return p5.min(parent.offsetWidth, parent.offsetHeight);
   }
 
   function onWindowResize() {
@@ -152,4 +155,4 @@ const s = (p5) => {
   };
 };
 
-new P5lib(s);
+new P5lib(s, parent);

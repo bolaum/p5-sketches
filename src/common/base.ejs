@@ -1,23 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js" lang="en">
   <head>
     <meta charset="UTF-8">
     <title>sketch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/css/foundation.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.sound.min.js"></script>
-    <style>
-      html, body {
-        overflow: hidden;
-        padding: 0;
-        margin: 0;
-        background-color: #fff;
-        width: 100%;
-        height: 100%;
-      }
-    </style>
   </head>
   <body>
+    <div id="overlay">
+      <div class="off-canvas position-right" id="offCanvas" data-off-canvas>
+        <!-- Menu -->
+        <ul class="vertical menu">
+          <li class="menu-text">
+            <h4>Parameters</h4>
+          </li>
+          <li class="menu-text">
+            <div class="grid-x align-middle grid-padding-x">
+              <div class="cell shrink toggle-label">
+                Toggle
+              </div>
+              <div class="cell auto">
+                <div class="switch small">
+                  <input class="switch-input" id="yes-no" type="checkbox" name="exampleSwitch">
+                  <label class="switch-paddle" for="yes-no">
+                    <span class="show-for-sr">Do you like me?</span>
+                    <span class="switch-active" aria-hidden="true">Yes</span>
+                    <span class="switch-inactive" aria-hidden="true">No</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li><hr/></li>
+          <li class="menu-text">
+            <div class="grid-x align-middle grid-padding-x">
+              <div class="cell small-12 toggle-label">
+                Slider
+              </div>
+              <div class="cell small-8">
+                <div class="slider" data-slider data-initial-start="50">
+                  <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput1"></span>
+                  <span class="slider-fill" data-slider-fill></span>
+                </div>
+              </div>
+              <div class="cell small-4">
+                <input type="number" id="sliderOutput1">
+              </div>
+            </div>
+          </li>
+          <li><hr/></li>
+          <% _.times(6, (i) => { %>
+            <li class="menu-text">
+              <div class="grid-x align-middle grid-padding-x">
+                <div class="cell shrink toggle-label">
+                  Input
+                </div>
+                <div class="cell auto">
+                  <input type="number" style="min-width: 53px;">
+                </div>
+              </div>
+            </li>
+            <li><hr/></li>
+          <% }) %>
+        </ul>
+      </div>
+      <div class="off-canvas-content side-pane-toggle" data-off-canvas-content>
+        <button type="button" class="vertical dropdown button tiny secondary" data-toggle="offCanvas"></button>
+      </div>
+    </div>
+    <div class="grid-x align-middle" id="sketch-wrapper">
+      <div class="cell" id="sketch">
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/5.2.3/what-input.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      // $('#offCanvas').foundation('open');
+    </script>
   </body>
 </html>
