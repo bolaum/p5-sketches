@@ -2,7 +2,7 @@ module.exports = {
   compile: [
     'dots',
     'lotus',
-    'mic',
+    // 'mic',
   ],
 
   sketches: [

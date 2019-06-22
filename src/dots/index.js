@@ -1,10 +1,7 @@
-import P5lib from 'p5';
-import 'p5/lib/addons/p5.dom';
 import _ from 'lodash';
 
-import '../common/base.scss';
+import P5Wrapper from '../common/p5wrapper';
 import Polygon from './polygon';
-import FPS from '../common/fps';
 
 const POLYGON_COLORS = [
   'red',
@@ -22,50 +19,65 @@ const POLYGON_COLORS = [
   '#cc4760',
 ];
 
-const parent = document.getElementById('sketch');
+class Dots extends P5Wrapper {
+  setup() {
+    this.dotSize = 8;
+    this.nPolygons = 13;
+    this.baseRpm = 6;
 
-/** @param p5 {P5lib} */
-const s = (p5) => {
-  let nPolygons = 13;
-  let canvasSize;
-  let minRadius;
-  let maxRadius;
-  let dotSize;
-  let baseRpm;
+    this.createInput('Polygons', this.nPolygons, (value) => {
+      const val = parseInt(value, 10);
 
-  /** @type {[Polygon]} */
-  let polygons;
-  /** @type {FPS} */
-  let fps;
+      const n = _.isNumber(val) && val > 2 ? val : 2;
 
-  // const container = parentDiv;
-  let cnv;
-  let rpmSlider;
-  let dotSlider;
-  let nPolygonsInput;
+      if (this.nPolygons !== n) {
+        this.createPolygons(n);
+      }
 
-  let lastTime = 0.0;
-  let elapsed = 0.0;
+      this.nPolygons = n;
+    });
 
-  function getCanvasSize() {
-    return p5.min(parent.offsetWidth, parent.offsetHeight);
+    this.createSlider('RPM', 0, 24, this.baseRpm, 0.1, (value) => {
+      this.baseRpm = value;
+    });
+
+    this.createSlider('Dot size', 0, 30, this.dotSize, 1, (value) => {
+      this.dotSize = value;
+    });
+
+    // this.createToggle('Show dots', true, (value) => {
+    //   // this.nPolygons = parseInt(value, 10);
+    // });
+
+    this.createPolygons(this.nPolygons);
   }
 
-  function onWindowResize() {
-    canvasSize = getCanvasSize();
+  render(elapsed) {
+    const { p5 } = this;
 
-    // console.log('WINDOW RESIZE', canvasSize);
+    _.eachRight(this.polygons, (polygon) => {
+      polygon.setPosition(p5.width * 0.5, p5.height * 0.5);
+      polygon.show(elapsed);
+    });
 
-    p5.resizeCanvas(canvasSize, canvasSize);
+    _.eachRight(this.polygons, (polygon, i) => {
+      const rpm = this.baseRpm + ((this.nPolygons - i - 1) * (this.baseRpm / 2));
+
+      polygon.setDotSize(this.dotSize);
+      polygon.setDotRPM(rpm);
+      polygon.showDot(elapsed);
+    });
   }
 
-  function createPolygons(n) {
-    minRadius = canvasSize / n + (n === 13 ? p5.windowWidth / 20 : 0);
-    maxRadius = canvasSize / 2;
+  createPolygons(n) {
+    const { p5 } = this;
+
+    const minRadius = this.canvasSize / n + (n === 13 ? p5.windowWidth / 20 : 0);
+    const maxRadius = this.canvasSize / 2;
 
     // console.log(minRadius, n);
 
-    polygons = _.times(
+    this.polygons = _.times(
       n,
       i => new Polygon(
         p5,
@@ -74,85 +86,11 @@ const s = (p5) => {
         p5.map(i, 0, n, minRadius, maxRadius),
         i + 3,
         0,
-        dotSize,
+        this.dotSize,
         POLYGON_COLORS[i % POLYGON_COLORS.length],
       ),
     );
   }
+}
 
-  p5.windowResized = onWindowResize;
-
-  p5.setup = () => {
-    p5.angleMode(p5.DEGREES);
-    // p5.frameRate(15);
-
-    canvasSize = getCanvasSize();
-    cnv = p5.createCanvas(canvasSize, canvasSize);
-
-    onWindowResize();
-
-    rpmSlider = p5.createSlider(0, 24, 6, 0.1);
-    rpmSlider.position(cnv.position().x, cnv.position().y + cnv.height - rpmSlider.height - 5);
-
-    dotSlider = p5.createSlider(0, 30, 15, 1);
-    dotSlider.position(
-      cnv.position().x + cnv.width - rpmSlider.width - 5,
-      cnv.position().y + cnv.height - rpmSlider.height - 5,
-    );
-
-    fps = new FPS(p5, p5.width - 30, 30);
-
-    nPolygonsInput = p5.createInput(nPolygons);
-    nPolygonsInput.position(cnv.position().x + 5, cnv.position().y + 35);
-    nPolygonsInput.size(60, 20);
-    nPolygonsInput.input(_.debounce(() => {
-      const val = parseInt(nPolygonsInput.value(), 10);
-      const n = _.isNumber(val) && val > 2 ? val : 2;
-      nPolygonsInput.value(n);
-
-      if (nPolygons !== n) {
-        nPolygons = n;
-        createPolygons(n);
-      }
-    }, 600));
-
-    createPolygons(nPolygons);
-
-    lastTime = parseFloat(p5.millis());
-  };
-
-  p5.draw = () => {
-    baseRpm = rpmSlider.value();
-    dotSize = dotSlider.value();
-
-    p5.background(255);
-    const curTime = p5.millis();
-    elapsed = parseFloat(curTime - lastTime) / 1000.0;
-    lastTime = curTime;
-
-    _.eachRight(polygons, (polygon) => {
-      polygon.setPosition(p5.width * 0.5, p5.height * 0.5);
-      polygon.show(elapsed);
-    });
-
-    _.eachRight(polygons, (polygon, i) => {
-      const rpm = baseRpm + (nPolygons - i - 1) * (baseRpm / 2);
-      polygon.setDotSize(dotSize);
-      polygon.setDotRPM(rpm);
-      polygon.showDot(elapsed);
-    });
-
-    // console.log(slider.y);
-
-    p5.push();
-    p5.textSize(15);
-    p5.text('Polygons', 5, 30);
-    p5.text(`RPM: ${rpmSlider.value()}`, 5, p5.height - rpmSlider.height - 10);
-    p5.text(`Dot size: ${dotSlider.value()}`, p5.width - rpmSlider.width - 5, p5.height - rpmSlider.height - 10);
-    p5.pop();
-
-    fps.show(elapsed);
-  };
-};
-
-new P5lib(s, parent);
+new Dots();

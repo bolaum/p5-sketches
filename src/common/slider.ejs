@@ -1,0 +1,17 @@
+<li class="menu-text">
+  <div class="grid-x align-middle grid-padding-x">
+    <div class="cell small-12 toggle-label">
+      <%= label %>
+    </div>
+    <div class="cell small-8">
+      <div class="slider" id="<%= id %>" data-slider data-start="<%= min %>" data-end="<%= max %>" data-initial-start="<%= value %>" data-step="<%= step %>">
+        <span class="slider-handle" data-slider-handle role="slider" tabindex="1" aria-controls="<%= id %>Input"></span>
+        <span class="slider-fill" data-slider-fill></span>
+      </div>
+    </div>
+    <div class="cell small-4">
+      <input type="number" id="<%= id %>Input">
+    </div>
+  </div>
+</li>
+<li><hr/></li>
