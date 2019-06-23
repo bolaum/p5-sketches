@@ -51,16 +51,30 @@ html, body {
 .side-pane-toggle {
   height: 100%;
 
+  span {
+    height: 57px;
+    width: $side-pane-button-width;
+    // top: 50%;
+    top: 0;
+    right: 0;
+    // transform: translateY(-50%);
+    border-bottom: 0;
+  }
+
   button {
     position: absolute;
-    right: 0;
     height: 100%;
     width: $side-pane-button-width;
     padding: 1px;
+    margin: 0;
+    // background: linear-gradient(to bottom, #76767600 0%, #76767600 40%, #767676FF 40%, #767676FF 60%, #76767600 60%, #76767600 100%) !important;
   }
 
   .dropdown::after {
     transform: rotate(90deg);
+    margin: 0;
+    display: block;
+    top: unset;
   }
 
   .dropdown[aria-expanded="true"]::after {
