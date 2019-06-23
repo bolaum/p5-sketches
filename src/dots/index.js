@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import P5Wrapper from '../common/p5wrapper';
-import Polygon from './polygon';
+import Polygon from '../common/polygon';
 
 const POLYGON_COLORS = [
   'red',
@@ -21,8 +21,8 @@ const POLYGON_COLORS = [
 
 class Dots extends P5Wrapper {
   setup() {
-    this.dotSize = 8;
     this.nPolygons = 13;
+    this.dotSize = 15;
     this.baseRpm = 6;
 
     this.createInput('Polygons', this.nPolygons, (value) => {
@@ -45,27 +45,27 @@ class Dots extends P5Wrapper {
       this.dotSize = value;
     });
 
-    // this.createToggle('Show dots', true, (value) => {
-    //   // this.nPolygons = parseInt(value, 10);
-    // });
-
     this.createPolygons(this.nPolygons);
   }
 
-  render(elapsed) {
-    const { p5 } = this;
-
-    _.eachRight(this.polygons, (polygon) => {
-      polygon.setPosition(p5.width * 0.5, p5.height * 0.5);
-      polygon.show(elapsed);
-    });
-
+  update(elapsed) {
     _.eachRight(this.polygons, (polygon, i) => {
       const rpm = this.baseRpm + ((this.nPolygons - i - 1) * (this.baseRpm / 2));
 
-      polygon.setDotSize(this.dotSize);
-      polygon.setDotRPM(rpm);
-      polygon.showDot(elapsed);
+      polygon.dotSize(this.dotSize);
+      polygon.dotRpm(rpm);
+
+      polygon.update(elapsed);
+    });
+  }
+
+  render() {
+    _.eachRight(this.polygons, (polygon) => {
+      polygon.show();
+    });
+
+    _.eachRight(this.polygons, (polygon) => {
+      polygon.showDot();
     });
   }
 
@@ -81,13 +81,17 @@ class Dots extends P5Wrapper {
       n,
       i => new Polygon(
         p5,
-        0,
-        0,
+        p5.width * 0.5,
+        p5.height * 0.5,
         p5.map(i, 0, n, minRadius, maxRadius),
         i + 3,
         0,
-        this.dotSize,
+        2,
         POLYGON_COLORS[i % POLYGON_COLORS.length],
+        null,
+        0,
+        64,
+        0,
       ),
     );
   }
