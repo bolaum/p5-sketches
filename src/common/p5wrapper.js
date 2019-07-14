@@ -18,6 +18,7 @@ class P5Wrapper {
     this._fps = null;
     this._lastTime = 0;
     this._lastId = 0;
+    this._showOverlay = false;
 
     this._s = (p5) => {
       p5.preload = this._preload.bind(this);
@@ -27,6 +28,8 @@ class P5Wrapper {
     };
 
     this._p5 = new P5lib(this._s, this._parent);
+
+    $('#overlay').hide();
   }
 
   get p5() {
@@ -69,6 +72,8 @@ class P5Wrapper {
       cb(val);
       // debouncedCb(val);
     });
+
+    this._showOverlay = true;
   }
 
   createInput(label, value, cb) {
@@ -91,6 +96,8 @@ class P5Wrapper {
       const val = $(`#${id}`).val();
       debouncedCb(val);
     });
+
+    this._showOverlay = true;
   }
 
   createToggle(label, value, cb) {
@@ -107,10 +114,12 @@ class P5Wrapper {
 
     $(`#${id}`).change(() => {
       const val = $(`#${id}`).prop('checked');
-      console.log(val);
+      // console.log(val);
       cb(val);
       // debouncedCb(val);
     });
+
+    this._showOverlay = true;
   }
 
   // PRIVATE
@@ -131,7 +140,10 @@ class P5Wrapper {
 
     this.setup();
 
-    $('#params-menu').foundation()
+    if (this._showOverlay) {
+      $('#params-menu').foundation();
+      $('#overlay').show();
+    }
   }
 
   _draw() {

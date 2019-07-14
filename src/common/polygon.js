@@ -17,6 +17,7 @@ class Polygon {
 
     this.position(x, y);
     this.radius(radius);
+    this.rotation(0);
     this.rpm(rpm);
     this.strokeWeight(strokeWeight);
     this.strokeColor(strokeColor);
@@ -30,13 +31,23 @@ class Polygon {
   }
 
   position(x, y) {
+    if (_.isNil(x) || _.isNil(y)) {
+      return [this._x, this._y];
+    }
+
     this._x = x;
     this._y = y;
+
+    return [this._x, this._y];
   }
 
   radius(r) {
     /** @type {P5lib} */
     const p5 = this._p5;
+
+    if (_.isNil(r)) {
+      return this._r;
+    }
 
     this._r = r;
     this._vertices = [];
@@ -53,6 +64,12 @@ class Polygon {
 
     this._dotVextexIndex = 0;
     this._curDotLerpInc = 0.5;
+
+    return this._r;
+  }
+
+  rotation(angle) {
+    this._rotation = angle;
   }
 
   rpm(rpm) {
@@ -134,7 +151,7 @@ class Polygon {
     p5.push();
 
     p5.translate(this._x, this._y);
-    p5.rotate((90 - (180.0 / this._nPoints)) + p5.lerp(0, 360, this._curPolygonLerpInc));
+    p5.rotate(this._rotation + (90 - (180.0 / this._nPoints)) + p5.lerp(0, 360, this._curPolygonLerpInc));
 
     p5.beginShape();
 

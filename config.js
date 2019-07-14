@@ -2,12 +2,12 @@ module.exports = {
   compile: [
     'dots',
     'lotus',
-    // 'mic',
+    'rectri',
   ],
 
   sketches: [
     'dots',
     'lotus',
-    // 'mic',
+    'rectri',
   ],
 };
