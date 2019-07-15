@@ -69,7 +69,12 @@ class Polygon {
   }
 
   rotation(angle) {
+    if (_.isNil(angle)) {
+      return this._rotation;
+    }
+
     this._rotation = angle;
+    return this._rotation;
   }
 
   rpm(rpm) {

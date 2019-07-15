@@ -6,8 +6,17 @@ module.exports = {
   ],
 
   sketches: [
-    'dots',
-    'lotus',
-    'rectri',
+    {
+      sketch: 'dots',
+      title: 'Dots',
+    },
+    {
+      sketch: 'lotus',
+      title: 'Lotus',
+    },
+    {
+      sketch: 'rectri',
+      title: 'Recursive Triangles',
+    },
   ],
 };

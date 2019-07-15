@@ -1,18 +1,39 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>p5-sketches</title>
     <link rel="icon" href="assets/p5js_favicon.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/css/foundation.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/css/foundation.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/zenburn.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.14/lodash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
   </head>
   <body>
-    <div id="app" class="grid-container">
+    <div class="title-bar align-center" data-responsive-toggle="sketches-menu" data-hide-for="medium">
+      <button class="menu-icon" type="button" data-toggle="sketches-menu"></button>
+      <div class="title-bar-title">p5 sketches by <a href="https://github.com/bolaum/p5-sketches">bolaum</a></div>
+    </div>
+
+    <div class="title-bar align-center show-for-medium">
+      <div class="title-bar-title">p5 sketches by <a href="https://github.com/bolaum/p5-sketches">bolaum</a></div>
+    </div>
+
+    <div class="grid-container" style="padding: 0;">
+      <ul class="horizontal menu align-center" id="sketches-menu">
+      </ul>
+
+      <div class="grid-container">
+        <div id="app" class=""></div>
+      </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/5.2.3/what-input.min.js"></script>

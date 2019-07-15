@@ -15,17 +15,20 @@ class RecTri extends P5Wrapper {
   // }
 
   render() {
-    // const { p5 } = this;
+    const { p5 } = this;
 
     const iRadius = this.tri.radius();
+    const iRot = this.tri.rotation();
     const [x, y] = this.tri.position();
+
+    p5.translate(0, p5.height * 0.1);
 
     this.tri.show();
 
     this.renderSub(x, y, iRadius);
 
     this.tri.radius(iRadius);
-    this.tri.rotation(0);
+    this.tri.rotation(iRot);
     this.tri.position(x, y);
   }
 
