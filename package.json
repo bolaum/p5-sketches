@@ -73,6 +73,7 @@
   },
   "gh-pages-deploy": {
     "staticpath": "dist",
+    "cname": "bolaum.dev",
     "prep": [
       "buildProd"
     ],
