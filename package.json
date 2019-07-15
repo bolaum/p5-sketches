@@ -7,7 +7,7 @@
     "clean": "rimraf dist",
     "dev": "webpack-dev-server --progress --colors --inline --hot --open",
     "build": "npm run clean && webpack --progress --colors -p",
-    "buildProd": "npm run build -- --mode production --devtool false --output-public-path '/p5-sketches'",
+    "buildProd": "npm run build -- --mode production --devtool false --output-public-path '/p5-sketches/'",
     "deploy": "gh-pages-deploy"
   },
   "repository": {
