@@ -7,7 +7,8 @@
     "clean": "rimraf dist",
     "dev": "webpack-dev-server --progress --colors --inline --hot --open",
     "build": "npm run clean && webpack --progress --colors -p",
-    "buildProd": "npm run build -- --mode production --devtool false"
+    "buildProd": "npm run build -- --mode production --devtool false",
+    "deploy": "gh-pages-deploy"
   },
   "repository": {
     "type": "git",
@@ -47,6 +48,7 @@
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.0",
+    "gh-pages-deploy": "^0.5.1",
     "html-webpack-plugin": "^3.2.0",
     "module-to-cdn": "^3.1.5",
     "node-sass": "^4.12.0",
@@ -68,5 +70,15 @@
       "dynamic-import-webpack",
       "@babel/transform-runtime"
     ]
+  },
+  "gh-pages-deploy": {
+    "staticpath": "dist",
+    "prep": [
+      "buildProd"
+    ],
+    "post": [
+      "clean"
+    ],
+    "noprompt": false
   }
 }
