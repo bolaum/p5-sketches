@@ -36,6 +36,10 @@ class P5Wrapper {
     return this._p5;
   }
 
+  get p5lib() {
+    return P5lib;
+  }
+
   get canvasSize() {
     return this._p5.min(this._parent.offsetWidth, this._parent.offsetHeight);
   }
@@ -122,6 +126,10 @@ class P5Wrapper {
     this._showOverlay = true;
   }
 
+  setBackgroundClear(disabled) {
+    this._disableClearBg = disabled;
+  }
+
   // PRIVATE
 
   _preload() {
@@ -155,7 +163,9 @@ class P5Wrapper {
 
     this.update(elapsed);
 
-    p5.background(255);
+    if (!this._disableClearBg) {
+      p5.background(255);
+    }
 
     this.render(elapsed);
 

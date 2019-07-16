@@ -8,4 +8,4 @@ Just a tail recursion that draws an inverted triangle inside a given bigger tria
   <iframe src="<%= sketch %>/<%= sketch %>.html" width="<%= size %>px" height="<%= size %>px"></iframe>
 </div>
 
-Code can be found [here](https://github.com/bolaum/p5-sketches/blob/master/src/rectri).
+Code can be found [here](https://github.com/bolaum/p5-sketches/blob/master/src/<%= sketch %>).

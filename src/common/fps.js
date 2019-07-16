@@ -20,10 +20,15 @@ class FPS {
       this._sinceLastUpdate = elapsed;
     }
 
+    const counterStr = `${p5.round(this._curFps)}`;
+
     p5.push();
     p5.textSize(this._textSize);
+    p5.fill(255);
+    p5.noStroke();
+    p5.rect(this._x, this._y - this._textSize, p5.textWidth(counterStr), this._textSize);
     p5.fill(0);
-    p5.text(`${p5.round(this._curFps)}`, this._x, this._y);
+    p5.text(counterStr, this._x, this._y);
     p5.pop();
   }
 }
