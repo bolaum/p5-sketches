@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>sketch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/css/foundation.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.14/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.sound.min.js"></script>
+  </head>
+  <body>
+    <div id="overlay">
+      <div class="off-canvas position-right" id="offCanvas" data-off-canvas>
+        <!-- Menu -->
+        <ul class="vertical menu" id="params-menu">
+          <li class="menu-text">
+            <h3 style="margin-bottom: 0;">Parameters</h3>
+          </li>
+          <li><hr/></li>
+        </ul>
+      </div>
+      <div class="off-canvas-content side-pane-toggle" data-off-canvas-content>
+        <span data-tooltip class="left" tabindex="4" title="Parameters">
+          <button type="button" class="vertical dropdown button tiny secondary" data-toggle="offCanvas"></button>
+        </span>
+      </div>
+    </div>
+    <div class="grid-x align-middle" id="sketch-wrapper">
+      <div class="cell flex-container align-middle" id="sketch">
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/5.2.3/what-input.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      // $('#offCanvas').foundation('open');
+    </script>
+  <script type="text/javascript" src="/p5-sketches/chaos_rectri/chaos_rectri.js"></script></body>
+</html>
