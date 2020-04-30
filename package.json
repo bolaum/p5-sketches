@@ -27,7 +27,7 @@
   "dependencies": {
     "@babel/runtime": "^7.5.4",
     "foundation-sites": "^6.5.3",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lodash": "^4.17.14",
     "navigo": "^7.1.2",
     "p5": "^0.9.0",
