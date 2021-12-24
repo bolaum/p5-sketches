@@ -13,7 +13,9 @@ const SKETCH_MAX_WIDTH = 800;
 function main() {
   const { sketches } = config;
   const converter = new showdown.Converter();
-  const router = new Navigo(null, true);
+  const router = new Navigo('/', {
+    hash: true,
+  });
 
   _.each(sketches, async ({ sketch, title }) => {
     const { default: md } = await import(`./${sketch}/README.md`);
@@ -30,10 +32,9 @@ function main() {
     router.on(`/${sketch}`, () => {
       $('#app').html(html);
       // $('#app').append(html);
-      // $('#app').append(html);
     }).resolve();
 
-    $('#sketches-menu').append(`<li><a href="#/${sketch}" data-navigo>${title}</a></li>`);
+    $('#sketches-menu').append(`<li><a href="/${sketch}" data-navigo>${title}</a></li>`);
   });
 
   // _.times(20, () => {

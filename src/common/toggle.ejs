@@ -1,13 +1,13 @@
 <li class="menu-text">
   <div class="grid-x align-middle grid-padding-x">
     <div class="cell shrink toggle-label">
-      <%= label %>
+      <%= data.label %>
     </div>
     <div class="cell auto">
       <div class="switch small">
-        <input class="switch-input" id="<%= id %>" type="checkbox" name="paramSwitch">
-        <label class="switch-paddle" for="<%= id %>">
-          <span class="show-for-sr"><%= label %></span>
+        <input class="switch-input" id="<%= data.id %>" type="checkbox" name="paramSwitch">
+        <label class="switch-paddle" for="<%= data.id %>">
+          <span class="show-for-sr"><%= data.label %></span>
           <span class="switch-active" aria-hidden="true">On</span>
           <span class="switch-inactive" aria-hidden="true">Off</span>
         </label>

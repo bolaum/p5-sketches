@@ -14,7 +14,7 @@ const plugins = [
   new webpack.ProvidePlugin({
     _: 'lodash',
   }),
-  new CopyWebpackPlugin([{ from: 'src/assets', to: 'assets' }]),
+  new CopyWebpackPlugin({patterns: [{ from: 'src/assets', to: 'assets' }]}),
   new HtmlWebpackPlugin({
     template: 'src/index.ejs',
     chunks: ['index'],
@@ -33,7 +33,7 @@ SKETCHES.forEach((sketch) => {
 });
 
 module.exports = {
-  devtool: 'inline-sourcemap',
+  devtool: 'inline-source-map',
   entry,
   mode: 'development',
   output: {
@@ -42,11 +42,17 @@ module.exports = {
     filename: '[name].js',
   },
   devServer: {
-    contentBase: 'src/',
-    watchContentBase: true,
-    inline: true,
+    static: {
+      directory: 'src/',
+      watch: true,
+    },
+    client: {
+      webSocketURL: {
+        port: 443,
+      },
+    },
     hot: true,
-    port: 3333,
+    allowedHosts: 'all',
   },
   module: {
     rules: [
@@ -54,7 +60,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        query: {
+        options: {
           presets: ['@babel/preset-env'],
         },
       },
@@ -65,6 +71,9 @@ module.exports = {
       {
         test: /\.ejs$/,
         loader: 'ejs-loader',
+        options: {
+          variable: 'data',
+        }
       },
       {
         test: /\.md$/,
